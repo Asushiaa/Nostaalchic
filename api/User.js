@@ -465,5 +465,20 @@ router.post('/change-password', (req, res) => {
         });
 });
 
+router.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+      if (err) {
+        console.error(err);
+        return res.json({
+          status: "FAILED",
+          message: "Une erreur s'est produite lors de la déconnexion"
+        });
+      }
+      res.redirect('/'); // Redirection vers la page d'accueil après la déconnexion
+    });
+  });
+  
+
+
 
 module.exports = router;
